@@ -71,6 +71,6 @@ def edit_task(request, task_id):
 
 @api_view(["GET"])
 def get_task(request, task_id):
-    task = Task.objects.get(id=task_id)
+    task = get_object_or_404(Task, pk=task_id)
     serializer = TaskSerializer(task, many=False)
     return Response(serializer.data, status=status.HTTP_200_OK)
